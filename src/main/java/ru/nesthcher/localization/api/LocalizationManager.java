@@ -1,8 +1,6 @@
 package ru.nesthcher.localization.api;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.jetbrains.annotations.NotNull;
@@ -76,7 +74,7 @@ public class LocalizationManager {
         final ConcurrentHashMap<String, Object> data = this.messages.getOrDefault(key, null);
         if (data == null) return null;
         final Object selectedMessage = data.getOrDefault(type.getIsoCode(), isDefaultLanguageType(type) ? null : data.getOrDefault(this.defaultLanguage.getIsoCode(), null));
-        if (selectedMessage == null || selectedMessage instanceof List<?> && ((List<?>) selectedMessage).isEmpty())
+        if (selectedMessage == null || selectedMessage instanceof ArrayList<?> && ((ArrayList<?>) selectedMessage).isEmpty())
             return null;
         return selectedMessage;
     }
@@ -99,11 +97,11 @@ public class LocalizationManager {
      * @param key ключ сообщения
      * @return список сообщений или список с ключом, если не найдено
      */
-    public List<String> getMessageList(@NotNull final AbstractLanguage type, final String key) {
+    public ArrayList<String> getMessageList(@NotNull final AbstractLanguage type, final String key) {
         final Object selectedMessage = getObjectMessage(type, key);
-        if (!(selectedMessage instanceof List<?>)) return List.of(key);
-        final List<String> selectedMessageArray = ArrayUtil.convertObjectToList(selectedMessage, String.class);
-        if (selectedMessageArray == null) return List.of(key);
+        if (!(selectedMessage instanceof ArrayList<?>)) return new ArrayList<>(List.of(key));
+        final ArrayList<String> selectedMessageArray = ArrayUtil.convertObjectToList(selectedMessage, String.class);
+        if (selectedMessageArray == null) return new ArrayList<>(List.of(key));
         return selectedMessageArray;
     }
 
