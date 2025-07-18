@@ -3,6 +3,7 @@ package ru.nesthcher.localization.implementation.language;
 import java.util.Arrays;
 import java.util.Objects;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.AllArgsConstructor;
@@ -271,7 +272,9 @@ public enum DefaultLanguages implements AbstractLanguage {
      * @return язык или null
      */
     @Nullable
-    public static DefaultLanguages getLangByIsoCode(final String isoCode) {
+    public static DefaultLanguages getLangByIsoCode(
+            @NotNull String isoCode
+    ) {
         return Arrays.stream(DefaultLanguages.values()).filter(s -> Objects.equals(s.isoCode, isoCode)).findFirst().orElse(null);
     }
 
@@ -281,7 +284,9 @@ public enum DefaultLanguages implements AbstractLanguage {
      * @return язык или null
      */
     @Nullable
-    public static DefaultLanguages getByName(final String name) {
+    public static DefaultLanguages getByName(
+            @NotNull String name
+    ) {
         return EnumUtil.getType(DefaultLanguages.class, name, null);
     }
 }

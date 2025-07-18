@@ -27,7 +27,7 @@ public final class FileLocaleLoader implements AbstractLocaleLoader {
      * @throws IllegalArgumentException если путь не оканчивается на .json
      */
     public FileLocaleLoader(
-            @NotNull final String path
+            @NotNull String path
     ) {
         if (!path.endsWith(".json")) throw new IllegalArgumentException("Путь должен заканчиваться на .json");
         this.path = path;
@@ -42,7 +42,7 @@ public final class FileLocaleLoader implements AbstractLocaleLoader {
     @Nullable
     public ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
         try {
-            final String strJson = Files.readString(Path.of(this.path));
+            String strJson = Files.readString(Path.of(this.path));
             if (!JsonUtil.isJsonValid(strJson)) return null;
             return ConverterUtil.GSON.fromJson(strJson, ConverterUtil.TYPE);
         } catch (IOException e) {

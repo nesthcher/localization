@@ -31,7 +31,7 @@ public final class WebLocaleLoader implements AbstractLocaleLoader {
      * @throws IllegalArgumentException если путь не оканчивается на .json или не является корректным URL
      */
     public WebLocaleLoader(
-            @NotNull final String path
+            @NotNull String path
     ) {
         if (!path.endsWith(".json")) throw new IllegalArgumentException("Путь должен заканчиваться на .json");
         if(!PatternUtil.isUrl(path)) throw new IllegalArgumentException("Путь должен быть корректным URL");
@@ -46,9 +46,9 @@ public final class WebLocaleLoader implements AbstractLocaleLoader {
     @Override
     @Nullable
     public ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
-        try (final HttpClient client = HttpClient.newHttpClient()) {
-            final HttpRequest request = HttpRequest.newBuilder().uri(URI.create(this.path)).build();
-            final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        try (HttpClient client = HttpClient.newHttpClient()) {
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(this.path)).build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (!JsonUtil.isJsonValid(response.body())) return null;
             return ConverterUtil.GSON.fromJson(new StringReader(response.body()), ConverterUtil.TYPE);
         } catch (IOException | InterruptedException e) {
