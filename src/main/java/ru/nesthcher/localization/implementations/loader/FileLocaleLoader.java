@@ -42,8 +42,8 @@ public final class FileLocaleLoader implements AbstractLocaleLoader {
     public @Nullable ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
         try {
             String strJson = Files.readString(Path.of(this.path));
-            if (!JsonUtil.isJsonValid(strJson)) return null;
-            return ConverterUtil.GSON.fromJson(strJson, ConverterUtil.TYPE);
+            if (!ConverterUtil.JSON_UTIL.isJsonValid(strJson)) return null;
+            return ConverterUtil.JSON_UTIL.gson.fromJson(strJson, ConverterUtil.TYPE);
         } catch (IOException e) {
             return null;
         }

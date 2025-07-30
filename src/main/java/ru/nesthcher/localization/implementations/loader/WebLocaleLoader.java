@@ -48,8 +48,8 @@ public final class WebLocaleLoader implements AbstractLocaleLoader {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(this.path)).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (!JsonUtil.isJsonValid(response.body())) return null;
-            return ConverterUtil.GSON.fromJson(new StringReader(response.body()), ConverterUtil.TYPE);
+            if (!ConverterUtil.JSON_UTIL.isJsonValid(response.body())) return null;
+            return ConverterUtil.JSON_UTIL.gson.fromJson(new StringReader(response.body()), ConverterUtil.TYPE);
         } catch (IOException | InterruptedException e) {
             return null;
         }
