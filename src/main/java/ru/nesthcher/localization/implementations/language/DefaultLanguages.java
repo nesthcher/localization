@@ -271,8 +271,7 @@ public enum DefaultLanguages implements AbstractLanguage {
      * @param isoCode ISO-код
      * @return язык или null
      */
-    @Nullable
-    public static DefaultLanguages getLangByIsoCode(
+    public static @Nullable DefaultLanguages getLangByIsoCode(
             @NotNull String isoCode
     ) {
         return Arrays.stream(DefaultLanguages.values()).filter(s -> Objects.equals(s.isoCode, isoCode)).findFirst().orElse(null);
@@ -283,8 +282,7 @@ public enum DefaultLanguages implements AbstractLanguage {
      * @param name имя
      * @return язык или null
      */
-    @Nullable
-    public static DefaultLanguages getByName(
+    public static @Nullable DefaultLanguages getByName(
             @NotNull String name
     ) {
         return EnumUtil.getType(DefaultLanguages.class, name, null);

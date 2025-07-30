@@ -6,7 +6,7 @@
 
     <groupId>ru.nesthcher</groupId>
     <artifactId>localization</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Библиотека для управления локализацией сообщений и поддержкой различных языков в Java-приложениях</description>

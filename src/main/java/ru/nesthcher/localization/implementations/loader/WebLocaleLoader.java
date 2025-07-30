@@ -44,8 +44,7 @@ public final class WebLocaleLoader implements AbstractLocaleLoader {
      *         или null, если ресурс недоступен или содержит невалидный JSON
      */
     @Override
-    @Nullable
-    public ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
+    public @Nullable ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(this.path)).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

@@ -39,8 +39,7 @@ public final class FileLocaleLoader implements AbstractLocaleLoader {
      *         или null, если файл не найден или содержит невалидный JSON
      */
     @Override
-    @Nullable
-    public ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
+    public @Nullable ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> getLocales() {
         try {
             String strJson = Files.readString(Path.of(this.path));
             if (!JsonUtil.isJsonValid(strJson)) return null;
