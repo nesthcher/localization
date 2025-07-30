@@ -1,4 +1,4 @@
-package ru.nesthcher.localization.implementation.loader;
+package ru.nesthcher.localization.implementations.loader;
 
 import java.io.IOException;
 import java.io.StringReader;

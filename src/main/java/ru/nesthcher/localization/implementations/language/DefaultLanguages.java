@@ -1,4 +1,4 @@
-package ru.nesthcher.localization.implementation.language;
+package ru.nesthcher.localization.implementations.language;
 
 import java.util.Arrays;
 import java.util.Objects;
