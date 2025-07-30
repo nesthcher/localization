@@ -1,4 +1,4 @@
-package ru.nesthcher.localization.api.language;
+package ru.nesthcher.localization.interfaces;
 
 /**
  * Интерфейс языка для локализации.

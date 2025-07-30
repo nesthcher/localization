@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ru.nesthcher.localization.api.language.AbstractLanguage;
+import ru.nesthcher.localization.interfaces.AbstractLanguage;
 import ru.nesthcher.utils.EnumUtil;
 
 /**

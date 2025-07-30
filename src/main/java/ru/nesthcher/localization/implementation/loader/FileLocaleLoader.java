@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.Getter;
-import ru.nesthcher.localization.api.ConverterUtil;
-import ru.nesthcher.localization.api.loader.AbstractLocaleLoader;
+import ru.nesthcher.localization.utils.ConverterUtil;
+import ru.nesthcher.localization.interfaces.AbstractLocaleLoader;
 import ru.nesthcher.utils.JsonUtil;
 
 /**

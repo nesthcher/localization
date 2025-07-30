@@ -1,4 +1,4 @@
-package ru.nesthcher.localization.api;
+package ru.nesthcher.localization.utils;
 
 import java.lang.reflect.Type;
 import java.util.concurrent.ConcurrentHashMap;

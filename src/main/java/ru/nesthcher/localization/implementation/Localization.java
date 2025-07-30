@@ -1,23 +1,19 @@
-package ru.nesthcher.localization.api;
+package ru.nesthcher.localization.implementation;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.jetbrains.annotations.NotNull;
 
-import ru.nesthcher.localization.api.language.AbstractLanguage;
-import ru.nesthcher.localization.api.loader.AbstractLocaleLoader;
+import ru.nesthcher.localization.interfaces.AbstractLanguage;
+import ru.nesthcher.localization.interfaces.AbstractLocaleLoader;
+import ru.nesthcher.localization.interfaces.AbstractLocalization;
 import ru.nesthcher.utils.ArrayUtil;
-import ru.nesthcher.utils.logger.AbstractLoggerApi;
 
 /**
  * Менеджер локализации для загрузки и получения сообщений на разных языках.
  */
-public class LocalizationManager {
-    /**
-     * Объект для логирования
-     */
-    private final AbstractLoggerApi loggerApi;
+public class Localization implements AbstractLocalization {
     /**
      * Язык по умолчанию.
      */
@@ -35,30 +31,23 @@ public class LocalizationManager {
      * Конструктор менеджера локализации.
      * @param defaultLanguage язык по умолчанию
      */
-    public LocalizationManager(
-            @NotNull AbstractLoggerApi loggerApi,
+    public Localization(
             @NotNull AbstractLanguage defaultLanguage
     ) {
-        this.loggerApi = loggerApi;
         this.defaultLanguage = defaultLanguage;
         this.loadedLocales = new ConcurrentHashMap<>();
         this.messages = new ConcurrentHashMap<>();
     }
 
-    /**
-     * Перезагружает все локали.
-     */
     public void reloadLocales() {
         this.messages.clear();
         for (AbstractLocaleLoader localeLoader : this.loadedLocales.values())
             loadLocale(localeLoader);
     }
 
-    /**
-     * Загружает локаль с помощью переданного загрузчика.
-     * @param localeLoader загрузчик локали
-     */
-    public void loadLocale(@NotNull AbstractLocaleLoader localeLoader) {
+    public void loadLocale(
+            @NotNull AbstractLocaleLoader localeLoader
+    ) {
         ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> loadLocales = localeLoader.getLocales();
         if (loadLocales == null || loadLocales.isEmpty()) {
             this.loadedLocales.remove(localeLoader.getPath());
@@ -71,7 +60,6 @@ public class LocalizationManager {
             this.messages.putAll(locales);
             if (!this.loadedLocales.containsKey(localeLoader.getPath()))
                 this.loadedLocales.put(localeLoader.getPath(), localeLoader);
-            loggerApi.log(LocalizationManager.class, "Локаль " + localeLoader.getPath() + " успешно загружена");
         }
     }
 
@@ -99,12 +87,6 @@ public class LocalizationManager {
         return selectedMessage;
     }
 
-    /**
-     * Получает строковое сообщение по ключу и языку.
-     * @param type язык
-     * @param key ключ сообщения
-     * @return строка сообщения или ключ, если не найдено
-     */
     public String getMessage(
             @NotNull AbstractLanguage type,
             @NotNull String key
@@ -114,12 +96,6 @@ public class LocalizationManager {
         return String.valueOf(selectedMessage);
     }
 
-    /**
-     * Получает список сообщений по ключу и языку.
-     * @param type язык
-     * @param key ключ сообщения
-     * @return список сообщений или список с ключом, если не найдено
-     */
     public ArrayList<String> getMessageList(
             @NotNull AbstractLanguage type,
             String key
@@ -131,22 +107,12 @@ public class LocalizationManager {
         return selectedMessageArray;
     }
 
-    /**
-     * Проверяет наличие ключа сообщения.
-     * @param messageKey ключ сообщения
-     * @return true, если ключ существует
-     */
     public boolean hasKey(
             @NotNull String messageKey
     ) {
         return this.messages.containsKey(messageKey);
     }
 
-    /**
-     * Проверяет, является ли язык языком по умолчанию.
-     * @param language язык
-     * @return true, если язык совпадает с языком по умолчанию
-     */
     public boolean isDefaultLanguageType(
             @NotNull AbstractLanguage language
     ) {

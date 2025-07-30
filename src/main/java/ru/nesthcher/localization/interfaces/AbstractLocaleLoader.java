@@ -1,4 +1,4 @@
-package ru.nesthcher.localization.api.loader;
+package ru.nesthcher.localization.interfaces;
 
 import java.util.concurrent.ConcurrentHashMap;
 
