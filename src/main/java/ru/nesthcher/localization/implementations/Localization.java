@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.nesthcher.localization.interfaces.AbstractLanguage;
 import ru.nesthcher.localization.interfaces.AbstractLocaleLoader;
 import ru.nesthcher.localization.interfaces.AbstractLocalization;
-import ru.nesthcher.utils.ArrayUtil;
+import ru.nesthcher.utils.array.ArrayUtil;
 
 /**
  * Менеджер локализации для загрузки и получения сообщений на разных языках.

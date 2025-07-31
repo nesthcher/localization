@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.nesthcher.localization.interfaces.AbstractLanguage;
-import ru.nesthcher.utils.EnumUtil;
+import ru.nesthcher.utils.enumeration.EnumUtil;
 
 /**
  * Перечисление стандартных языков/стран для локализации.

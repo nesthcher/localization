@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.experimental.UtilityClass;
-import ru.nesthcher.utils.JsonUtil;
+import ru.nesthcher.utils.json.JsonUtil;
 
 /**
  * Утилитный класс для конвертации JSON в объекты и обратно.

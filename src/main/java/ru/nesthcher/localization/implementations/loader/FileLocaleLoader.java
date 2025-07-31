@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import lombok.Getter;
 import ru.nesthcher.localization.utils.ConverterUtil;
 import ru.nesthcher.localization.interfaces.AbstractLocaleLoader;
-import ru.nesthcher.utils.JsonUtil;
 
 /**
  * Загрузчик локалей из локального JSON-файла.
